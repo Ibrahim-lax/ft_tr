@@ -1,5 +1,6 @@
 
 services:
+
   postgres:
     image: postgres:15
     container_name: postgres_db
@@ -14,11 +15,10 @@ services:
     networks:
       - trans_net
 
+
   backend:
     build: ./backend
     container_name: nestjs_app
-    ports:
-      - "3000:3000"
     volumes:
       - ./backend:/app
       - /app/node_modules
@@ -29,16 +29,33 @@ services:
     networks:
       - trans_net
 
+
   frontend:
     build: ./frontend
     container_name: react_app
-    ports:
-      - "5173:5173"
     volumes:
       - ./frontend:/app
       - /app/node_modules
+    env_file:
+      - .env
     networks:
       - trans_net
+
+
+
+  nginx:
+    build: ./nginx
+    container_name: c_nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - trans_net
+
+
 
 volumes:
   pg_data:
@@ -46,3 +63,6 @@ volumes:
 networks:
   trans_net:
     driver: bridge
+
+
+

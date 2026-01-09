@@ -6,8 +6,14 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get() // <-- Make sure this says 'users'
-  getUsers() {
+  @Get('users')
+  getUsers()
+  {
     return this.appService.send_json();
+  }
+  @Get('state')
+  getState()
+  {
+    return this.appService.sendState();
   }
 }
