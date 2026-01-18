@@ -10,16 +10,29 @@ up :
 d: 
 	docker compose down
 
+# uncomment setup rule FOR UBUNTU
 
+# setup:
+# 	@echo "⏳ Waiting for database to be ready..."
+# 	@# This loop waits until the backend can successfully ping the DB
+# 	@until docker-compose exec $(BACKEND_SVC) npx prisma dev &> /dev/null; do \
+# 		sleep 1; \
+# 	done
+# 	@echo "✅ Database is up! Syncing schema..."
+# 	docker compose exec $(BACKEND_SVC) npx prisma db push
+# 	docker compose exec $(BACKEND_SVC) npx prisma generate
+# 	@echo "🚀 Tables created and Client generated. Coding time!"
+
+
+# uncomment setup rule FOR MACOS
 setup:
 	@echo "⏳ Waiting for database to be ready..."
-	@# This loop waits until the backend can successfully ping the DB
-	@until docker-compose exec $(BACKEND_SVC) npx prisma dev &> /dev/null; do \
+	@until docker compose exec backend npx prisma dev > /dev/null 2>&1; do \
 		sleep 1; \
 	done
 	@echo "✅ Database is up! Syncing schema..."
-	docker-compose exec $(BACKEND_SVC) npx prisma db push
-	docker-compose exec $(BACKEND_SVC) npx prisma generate
+	docker compose exec backend npx prisma db push
+	docker compose exec backend npx prisma generate
 	@echo "🚀 Tables created and Client generated. Coding time!"
 
 
