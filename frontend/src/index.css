@@ -1,36 +1,3 @@
-:root {
-  background-color: #282c34; /* Dark grey looks better than pure black #000000 */
-  color: rgb(180, 180, 180); /* Sets default text color to white */
-}
-
-body {
-  margin: 0;
-  height: 100vh;            /* Full height of the screen */
-  display: flex;            /* Use Flexbox layout */
-  justify-content: center;  /* Center horizontally (left/right) */
-  align-items: center;      /* Center vertically (up/down) */
-  background-color: #009dffdb;
-}
-/* This targets className="square" */
-.q {
-  background-color: #ffffff; /* White button */
-  border: 3px solid #934141;    /* Thin grey border */
-  color: #393361;            /* Black text */
-  
-  /* Size and Spacing */
-  height: 300px;
-  width: 800px;
-  
-  /* Text alignment */
-  font-size: 100px;
-  font-weight: bold;
-  cursor: pointer; /* Changes mouse to a hand icon */
-  /* Smooth transition for hover effects */
-  transition: background-color 0.2s ease;
-}
-
-/* Optional: Change style when clicked (Active) */
-.q:active {
-  background-color: #ffffff;
-  transform: scale(0.98); /* Slight shrink effect */
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
